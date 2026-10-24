@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+
+# Databases & Runtime logs
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# User Uploads (keep folder structure)
+uploads/*
+!uploads/.gitkeep

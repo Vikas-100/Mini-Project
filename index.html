@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DFD Model | Deepfake Detection and Media Verification System</title>
+  <meta name="description" content="AI-powered Deepfake Detection and Media Verification System using DFD Model. Analyze facial features, frequency domain artifacts, and detect manipulated images online.">
+  <meta name="keywords" content="DFD Model, Deepfake Detection, Media Verification, Artificial Intelligence, Machine Learning, Image and Video Analysis, Flask, Python">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Custom Design System CSS -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Navigation Bar
+       ======================================================================== -->
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">
+        <div class="brand-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <span>DFD Model</span>
+        <span class="brand-badge">Online</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#showcase">Different Detections</a></li>
+          <li class="nav-item"><a class="nav-link" href="#howItWorks">How to Use</a></li>
+          <li class="nav-item"><a class="nav-link" href="#studio">AI Studio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#useCases">Use Cases</a></li>
+          <li class="nav-item"><a class="nav-link" href="#trust">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+        </ul>
+
+        <!-- Right Side: Auth Buttons & Upload Action -->
+        <div class="d-flex align-items-center gap-2">
+          <!-- Auth buttons (shown when guest) -->
+          <div class="d-flex align-items-center gap-2" id="navAuthGroup">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3 fw-semibold" id="navSignInBtn" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-mode="signin">
+              <i class="fa-solid fa-right-to-bracket me-1 text-primary"></i> Sign In
+            </button>
+            <button type="button" class="btn btn-primary-custom btn-sm" id="navSignUpBtn" data-bs-toggle="modal" data-bs-target="#authModal" data-auth-mode="signup">
+              <i class="fa-solid fa-user-plus me-1"></i> Sign Up
+            </button>
+          </div>
+
+          <!-- User Profile Dropdown (shown when logged in) -->
+          <div class="dropdown d-none" id="navUserDropdown">
+            <button class="btn btn-secondary-custom btn-sm dropdown-toggle d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="user-avatar-badge" id="navUserAvatar">A</span>
+              <span id="navUserName" class="fw-semibold small">Alex</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2">
+              <li><h6 class="dropdown-header" id="navUserEmail">alex@example.com</h6></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#studio"><i class="fa-solid fa-sliders me-2 text-primary"></i>AI Studio</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" id="userSignOutBtn"><i class="fa-solid fa-right-from-bracket me-2 text-danger"></i>Sign Out</a></li>
+            </ul>
+          </div>
+
+          <a href="#studio" class="btn btn-outline-primary btn-sm rounded-pill ms-1 d-none d-md-inline-flex align-items-center gap-1">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Upload</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
+       Hero Section
+       ======================================================================== -->
+  <header id="hero" class="hero-section">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <h1 class="hero-title">AI Deepfake Detection Online Free</h1>
+          <p class="hero-subtitle">
+            Upload images or media clips to verify digital authenticity. The DFD Model inspects facial landmarks, high-frequency residuals, and visual manipulation patterns in real time.
+          </p>
+
+          <div class="rating-badge-group">
+            <div class="stars-rating">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <span class="rating-text">4.9/5 Rating &bull; 14,250+ Verifications Analyzed</span>
+          </div>
+
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#studio" class="btn btn-primary-custom hero-cta-btn">
+              <span>Check Media Now</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#howItWorks" class="btn btn-secondary-custom hero-cta-btn">
+              <i class="fa-solid fa-circle-play"></i>
+              <span>How It Works</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- Interactive Split Before/After Face Comparison -->
+          <div class="comparison-container" id="heroComparisonContainer">
+            <div class="comparison-wrapper">
+              <!-- Left: Real / Authentic Face -->
+              <div class="comparison-side left" id="heroLeftSide">
+                <img src="/static/images/hero_face_real.jpg" alt="Authentic Original Portrait" class="comparison-img">
+                <div class="comparison-tag tag-real">
+                  <i class="fa-solid fa-circle-check me-1"></i> Real (98.4%)
+                </div>
+              </div>
+              <!-- Right: Manipulated Deepfake Face -->
+              <div class="comparison-side right">
+                <img src="/static/images/hero_face_fake.jpg" alt="Deepfake Altered Bald Portrait" class="comparison-img">
+                <div class="comparison-tag tag-fake">
+                  <i class="fa-solid fa-triangle-exclamation me-1"></i> Fake (94.2%)
+                </div>
+              </div>
+              <!-- Draggable Slider Handle -->
+              <div class="slider-handle" id="heroSliderHandle" title="Drag to compare Real vs Fake">
+                <i class="fa-solid fa-arrows-left-right"></i>
+              </div>
+            </div>
+          </div>
+          <p class="text-center text-muted small mt-2">
+            <i class="fa-solid fa-hand-pointer me-1"></i> Drag slider to reveal authentic facial features vs. deepfake alterations
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Showcase: Different Deepfake Detection Online
+       ======================================================================== -->
+  <!-- ========================================================================
+       Showcase: AI Detection Modalities (Image, Video, Audio)
+       ======================================================================== -->
+  <section id="showcase" class="section-showcase">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Different Deepfake Detection Online</h2>
+        <p class="section-desc">
+          Identify subtle AI-generated distortions, facial transplants, and synthetic artifacts across specialized detection pipelines.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Card 1: AI Image & Face Detection (Available Now) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="modality-card">
+            <div class="modality-img-box">
+              <img src="/static/images/card_image_detection.jpg" alt="AI Image and Face Detection" class="modality-img">
+              <div class="modality-badges-top">
+                <span class="badge-pill-available">
+                  <span class="pulse-dot-green"></span> AVAILABLE NOW
+                </span>
+                <span class="badge-pill-stat">
+                  <strong>99.4%</strong> <small>PRECISION</small>
+                </span>
+              </div>
+              <div class="modality-badge-bottom">
+                <span class="badge-pill-tech">Spatial & Biometrics</span>
+              </div>
+            </div>
+            <div class="modality-card-body">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <h3 class="modality-title mb-0">AI Image & Face Detection</h3>
+              </div>
+              <div class="modality-subtitle mb-2">Spot Face Swaps & Diffusion</div>
+              <p class="modality-desc">
+                Detects facial landmark warping, corneal highlight asymmetry, and GAN/diffusion checkerboard patterns across static photos.
+              </p>
+              <ul class="modality-checklist">
+                <li><i class="fa-solid fa-check text-success"></i> <span>Face-swap boundary seams</span></li>
+                <li><i class="fa-solid fa-check text-success"></i> <span>Midjourney & Flux portraits</span></li>
+                <li><i class="fa-solid fa-check text-success"></i> <span>Corneal reflection physics</span></li>
+              </ul>
+              <div class="mt-auto pt-2">
+                <a href="#studio" class="btn btn-modality-action w-100">
+                  <span>Launch Image Forensics</span>
+                  <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: AI Video Detection (Coming Soon) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="modality-card">
+            <div class="modality-img-box">
+              <img src="/static/images/card_video_detection.jpg" alt="AI Video Detection" class="modality-img">
+              <div class="modality-badges-top">
+                <span class="badge-pill-soon">
+                  <span class="pulse-dot-amber"></span> COMING SOON
+                </span>
+                <span class="badge-pill-roadmap">
+                  <strong>In Dev</strong> <small>ROADMAP</small>
+                </span>
+              </div>
+              <div class="modality-badge-bottom">
+                <span class="badge-pill-tech">Temporal & Lip-Sync</span>
+              </div>
+            </div>
+            <div class="modality-card-body">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <h3 class="modality-title mb-0">AI Video Detection</h3>
+                <span class="badge-inline-soon">COMING SOON</span>
+              </div>
+              <div class="modality-subtitle mb-2">Spot Viral Video Manipulations</div>
+              <p class="modality-desc">
+                Decomposes video streams to inspect frame-by-frame optical flow, spontaneous eye saccades, and viseme-to-phoneme lip sync.
+              </p>
+              <ul class="modality-checklist">
+                <li><i class="fa-solid fa-check text-muted"></i> <span>Temporal motion vectors</span></li>
+                <li><i class="fa-solid fa-check text-muted"></i> <span>Audio-visual lip alignment</span></li>
+                <li><i class="fa-solid fa-check text-muted"></i> <span>Broadcast stream integrity</span></li>
+              </ul>
+              <div class="mt-auto pt-2">
+                <button type="button" class="btn btn-modality-soon w-100 coming-soon-trigger" data-feature="AI Video Temporal Frame Detection">
+                  <span>AI Video Detection (Coming Soon)</span>
+                  <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: AI Voice & Audio Detection (Coming Soon) -->
+        <div class="col-lg-4 col-md-6">
+          <div class="modality-card">
+            <div class="modality-img-box">
+              <img src="/static/images/card_audio_detection.jpg" alt="AI Voice and Audio Detection" class="modality-img">
+              <div class="modality-badges-top">
+                <span class="badge-pill-soon">
+                  <span class="pulse-dot-amber"></span> COMING SOON
+                </span>
+                <span class="badge-pill-roadmap">
+                  <strong>In Dev</strong> <small>ROADMAP</small>
+                </span>
+              </div>
+              <div class="modality-badge-bottom">
+                <span class="badge-pill-tech">Spectrogram & Vocoder</span>
+              </div>
+            </div>
+            <div class="modality-card-body">
+              <div class="d-flex align-items-center justify-content-between mb-1">
+                <h3 class="modality-title mb-0">AI Voice & Audio Detection</h3>
+                <span class="badge-inline-soon">COMING SOON</span>
+              </div>
+              <div class="modality-subtitle mb-2">Spot Cloned Scam Calls</div>
+              <p class="modality-desc">
+                Analyzes acoustic waveforms and mel-spectrograms for neural vocoder phase cutoffs and lack of biological glottal jitter.
+              </p>
+              <ul class="modality-checklist">
+                <li><i class="fa-solid fa-check text-muted"></i> <span>HiFi-GAN & BigVGAN cuts</span></li>
+                <li><i class="fa-solid fa-check text-muted"></i> <span>Zero-shot voice clones</span></li>
+                <li><i class="fa-solid fa-check text-muted"></i> <span>Robotic pitch quantization</span></li>
+              </ul>
+              <div class="mt-auto pt-2">
+                <button type="button" class="btn btn-modality-soon w-100 coming-soon-trigger" data-feature="AI Voice & Mel-Spectrogram Forensics">
+                  <span>AI Voice & Audio Detection (Coming Soon)</span>
+                  <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       How to Use Deepfake Detection (4 Steps & Visual Mockup)
+       ======================================================================== -->
+  <section id="howItWorks" class="section-how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How to Use Deepfake Detection</h2>
+        <p class="section-desc">
+          Four effortless steps to inspect media integrity, uncover AI manipulation, and download verification certificates.
+        </p>
+      </div>
+
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-6">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Step 1: Upload Your Media</h3>
+              <p>Drag and drop any suspicious photo (JPG, PNG, WEBP). Video & Audio verification modes are currently in development.</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Step 2: Choose AI Detection Model</h3>
+              <p>Select your DFD Model inspection profile: Vision Transformer (ViT), 68-Point Facial Geometry, Frequency Domain (FFT), or Unified Ensemble.</p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Step 3: Run AI Scan</h3>
+              <p>Our deep neural models analyze pixel-level color banding, eye-gaze reflection consistency, boundary blending, and facial geometry.</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Step 4: Download Verification Report</h3>
+              <p>Inspect Grad-CAM anomaly heatmaps and download an official cryptographic certificate containing verification SHA-256 signatures.</p>
+            </div>
+          </div>
+
+          <div class="mt-4">
+            <a href="#studio" class="btn btn-primary-custom">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Try DFD Model Detector Now</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <!-- UI Workflow Mockup -->
+          <div class="how-ui-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dots">
+                <span class="mockup-dot dot-red"></span>
+                <span class="mockup-dot dot-yellow"></span>
+                <span class="mockup-dot dot-green"></span>
+              </div>
+              <small class="text-muted fw-semibold font-monospace">DFD Model Forensic Workflow v2.6</small>
+            </div>
+
+            <div class="mockup-flow-grid">
+              <div class="mockup-box">
+                <div class="mockup-box-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <div class="mockup-box-title">1. Media Ingestion</div>
+                <div class="mockup-box-status text-success">Buffer Loaded (OK)</div>
+              </div>
+
+              <div class="mockup-box">
+                <div class="mockup-box-icon"><i class="fa-solid fa-microchip"></i></div>
+                <div class="mockup-box-title">2. Neural Inference</div>
+                <div class="mockup-box-status text-primary">DFD ViT Active</div>
+              </div>
+
+              <div class="mockup-box">
+                <div class="mockup-box-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="mockup-box-title">3. Anomaly Heatmap</div>
+                <div class="mockup-box-status text-warning">Grad-CAM Overlay</div>
+              </div>
+
+              <div class="mockup-box">
+                <div class="mockup-box-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div class="mockup-box-title">4. Forensic Stamp</div>
+                <div class="mockup-box-status text-success">Signed SHA-256</div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light rounded mt-3 text-center border">
+              <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2 rounded-pill font-monospace">
+                <i class="fa-solid fa-circle-check me-1"></i> DFD Model Benchmark Precision: 98.4%
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Interactive Live Deepfake Detection Studio
+       ======================================================================== -->
+  <section id="studio" class="section-studio">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Interactive AI Detection Studio</h2>
+        <p class="section-desc">
+          Test sample files or upload your own images to run instant neural forensic inspections with the DFD Model.
+        </p>
+      </div>
+
+      <div class="studio-container">
+        <!-- Media Mode Switcher (Framed Tabs for Image, Video, Audio) -->
+        <div class="media-mode-frame-wrapper">
+          <div class="media-mode-tabs">
+            <button type="button" class="media-mode-btn active" id="btnModeImage">
+              <i class="fa-solid fa-image text-primary"></i>
+              <span>Image Detection</span>
+              <span class="badge-mode-active"><i class="fa-solid fa-circle-check"></i> Active</span>
+            </button>
+            <button type="button" class="media-mode-btn framed-soon" id="btnModeVideo">
+              <i class="fa-solid fa-film text-warning"></i>
+              <span>Video Verification</span>
+              <span class="badge-coming-soon">Coming Soon</span>
+            </button>
+            <button type="button" class="media-mode-btn framed-soon" id="btnModeAudio">
+              <i class="fa-solid fa-microphone-lines text-warning"></i>
+              <span>Audio Verification</span>
+              <span class="badge-coming-soon">Coming Soon</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Studio Header & Model Tabs -->
+        <div class="studio-header-nav">
+          <div class="d-flex align-items-center gap-2">
+            <span class="fw-bold text-dark"><i class="fa-solid fa-sliders me-1 text-primary"></i> DFD Model Engine:</span>
+            <div class="model-selector-group">
+              <button class="model-tab-btn active" data-model="ensemble">Ensemble ViT</button>
+              <button class="model-tab-btn" data-model="vit">Vision Transformer</button>
+              <button class="model-tab-btn" data-model="fft">FFT Spectral</button>
+              <button class="model-tab-btn" data-model="temporal">Temporal Flow</button>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <button id="analyzeBtn" class="btn btn-primary-custom btn-sm">
+              <i class="fa-solid fa-play"></i>
+              <span>Re-Analyze Media</span>
+            </button>
+            <button id="viewCertBtn" class="btn btn-secondary-custom btn-sm" disabled>
+              <i class="fa-solid fa-file-shield"></i>
+              <span>View Certificate</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <!-- Left: Upload Box & Sample Chips -->
+          <div class="col-lg-5">
+            <!-- Dropzone -->
+            <div class="upload-dropzone" id="studioDropzone">
+              <input type="file" id="studioFileInput" accept="image/*,video/*,audio/*" class="d-none">
+              <div class="dropzone-icon">
+                <i class="fa-solid fa-file-arrow-up"></i>
+              </div>
+              <h4 class="fw-bold fs-6 mb-1">Click to Upload or Drag & Drop</h4>
+              <p class="text-muted small mb-0">Supports JPG, PNG, WEBP (Max 15MB)</p>
+              <small class="text-primary d-block mt-1"><i class="fa-solid fa-video me-1"></i> Video & Audio verification coming soon</small>
+            </div>
+
+            <!-- Image Analyze Options Card -->
+            <div class="image-analyze-options-card mt-3">
+              <div class="d-flex align-items-center justify-content-between mb-2">
+                <span class="fw-bold text-dark small">
+                  <i class="fa-solid fa-sliders me-1 text-primary"></i> Image Analyze Options
+                </span>
+                <span class="badge bg-primary-subtle text-primary font-monospace small" id="activeModelBadge">
+                  Ensemble ViT
+                </span>
+              </div>
+
+              <!-- Model Selector Radio Pills -->
+              <div class="mb-3">
+                <label class="form-label text-muted small fw-bold mb-1">Select Detection Model Engine:</label>
+                <div class="analyze-model-grid">
+                  <label class="model-option-pill active" data-model="ensemble">
+                    <input type="radio" name="analyzeModelOpt" value="ensemble" checked class="d-none">
+                    <span class="option-title"><i class="fa-solid fa-microchip me-1 text-primary"></i> Ensemble ViT + EfficientNet</span>
+                    <span class="option-desc">Multi-scale spatial & attention ensemble (99.4% precision)</span>
+                  </label>
+                  <label class="model-option-pill" data-model="vit">
+                    <input type="radio" name="analyzeModelOpt" value="vit" class="d-none">
+                    <span class="option-title"><i class="fa-solid fa-eye me-1 text-info"></i> Vision Transformer (ViT-v2.6)</span>
+                    <span class="option-desc">Patch-level self-attention & boundary blend seams</span>
+                  </label>
+                  <label class="model-option-pill" data-model="fft">
+                    <input type="radio" name="analyzeModelOpt" value="fft" class="d-none">
+                    <span class="option-title"><i class="fa-solid fa-wave-square me-1 text-warning"></i> FFT Spectral Residual</span>
+                    <span class="option-desc">High-frequency GAN & diffusion checkerboards</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Sensitivity Option Slider / Radios -->
+              <div class="row g-2 mb-3">
+                <div class="col-6">
+                  <label class="form-label text-muted small fw-bold mb-1">Sensitivity:</label>
+                  <select class="form-select form-select-sm" id="analyzeSensitivity">
+                    <option value="95">High Precision (95%)</option>
+                    <option value="85" selected>Standard (85%)</option>
+                    <option value="75">Deep Forensic (75%)</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <label class="form-label text-muted small fw-bold mb-1">Analysis Focus:</label>
+                  <select class="form-select form-select-sm" id="analyzeFocus">
+                    <option value="faceswap" selected>Face-Swap Seams</option>
+                    <option value="diffusion">Generative Diffusion</option>
+                    <option value="prnu">Hardware PRNU Noise</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Main Analyze Image Button -->
+              <button type="button" id="btnAnalyzeImageMain" class="btn btn-primary w-100 py-2 fw-bold rounded-pill shadow-sm d-flex align-items-center justify-content-center gap-2">
+                <i class="fa-solid fa-bolt-lightning text-warning"></i>
+                <span>Analyze Image Now</span>
+                <span class="badge bg-white text-primary rounded-pill small ms-1" id="analyzeBtnStatus">Ready</span>
+              </button>
+            </div>
+
+            <!-- Quick-Test Sample Gallery -->
+            <div class="mt-3">
+              <label class="form-label fw-bold small text-muted text-uppercase mb-2">Or Select a Benchmark Sample:</label>
+              <div class="preset-samples-group justify-content-start">
+                <span class="sample-chip" data-sample="hero_face_fake.jpg">
+                  <i class="fa-solid fa-mask text-danger"></i> Deepfake Face Swap
+                </span>
+                <span class="sample-chip" data-sample="hero_face_real.jpg">
+                  <i class="fa-solid fa-user-check text-success"></i> Genuine Portrait
+                </span>
+                <span class="sample-chip" data-sample="showcase_debate_fake.jpg">
+                  <i class="fa-solid fa-tv text-warning"></i> News Debate Altered
+                </span>
+                <span class="sample-chip" data-sample="showcase_student_real.jpg">
+                  <i class="fa-solid fa-book-open text-primary"></i> Archival Library
+                </span>
+              </div>
+            </div>
+
+            <!-- Live Telemetry Terminal -->
+            <div class="mt-4">
+              <label class="form-label fw-bold small text-muted text-uppercase mb-1">
+                <i class="fa-solid fa-terminal me-1"></i> Real-Time Telemetry Stream:
+              </label>
+              <div class="telemetry-console" id="telemetryConsole">
+                <div class="console-line info">[DFD Model] Ready for media upload.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle / Right: Analysis Stage & Visual Layer Overlay -->
+          <div class="col-lg-7">
+            <div class="analysis-stage" id="analysisStage">
+              <!-- Laser Scanner Line -->
+              <div class="laser-scanner-line"></div>
+
+              <!-- Media Canvas Wrapper (Ensures 1:1 Pixel Alignment) -->
+              <div class="media-canvas-wrapper" id="mediaCanvasWrapper">
+                <!-- Media Preview -->
+                <img id="previewMedia" src="/static/images/hero_face_fake.jpg" alt="Media to analyze" class="preview-media">
+                <!-- HTML5 Canvas Overlay for Landmarks and Grad-CAM Heatmaps -->
+                <canvas id="overlayCanvas" class="overlay-canvas"></canvas>
+              </div>
+
+              <!-- Layer Switching Controls -->
+              <div class="layer-controls">
+                <button class="layer-btn active" data-layer="landmarks">
+                  <i class="fa-solid fa-circle-nodes me-1"></i> Facial Landmarks
+                </button>
+                <button class="layer-btn" data-layer="heatmap">
+                  <i class="fa-solid fa-fire-flame-curved me-1"></i> Grad-CAM Heatmap
+                </button>
+                <button class="layer-btn" data-layer="ela">
+                  <i class="fa-solid fa-compress me-1"></i> ELA Error Heatmap
+                </button>
+                <button class="layer-btn" data-layer="fft">
+                  <i class="fa-solid fa-wave-square me-1"></i> FFT Residuals
+                </button>
+                <button class="layer-btn" data-layer="original">
+                  <i class="fa-solid fa-image me-1"></i> Original
+                </button>
+              </div>
+            </div>
+
+            <!-- Layer Information Explainer -->
+            <div class="d-flex justify-content-between align-items-center mt-2 px-1">
+              <div id="layerExplainer" class="small text-muted">
+                <i class="fa-solid fa-circle-info text-primary me-1"></i> Active Layer: <strong>68-Point 3D Facial Landmark Alignment Mesh</strong>
+              </div>
+              <small class="text-muted font-monospace" id="analyzedDims">Crop: Frontal Face</small>
+            </div>
+
+            <!-- Verdict & Calibrated Forensic Explanation Panel -->
+            <div class="mt-3">
+              <!-- Verdict Box -->
+              <div id="verdictBox" class="verdict-box verdict-manipulated">
+                <div class="d-flex align-items-center gap-3">
+                  <div id="verdictIconBox" class="fs-1 text-danger">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                  </div>
+                  <div>
+                    <div id="verdictBadge" class="badge bg-danger text-uppercase px-2 py-1 mb-1">Likely AI-generated or manipulated</div>
+                    <div id="verdictTitle" class="verdict-title mb-1">LIKELY AI-GENERATED OR MANIPULATED</div>
+                    <div id="verdictSubtitle" class="small text-muted">AI Face Swap & Boundary Blending Seams detected.</div>
+                    <div id="verdictAdvice" class="small fw-semibold text-danger mt-1">
+                      <i class="fa-solid fa-shield-xmark me-1"></i> Warning: Synthetic alterations found. Do not treat as genuine.
+                    </div>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <div id="verdictScoreBadge" class="verdict-score-badge">94.2%</div>
+                  <div id="verdictScoreLabel" class="small text-muted fw-bold mt-1">P(fake) Probability</div>
+                </div>
+              </div>
+
+              <!-- Calibrated Decision Scale -->
+              <div class="calibration-scale-container">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <span class="small fw-bold text-dark">
+                    <i class="fa-solid fa-scale-balanced me-1 text-primary"></i> Calibrated Decision Boundary:
+                  </span>
+                  <span class="badge bg-dark-subtle text-dark font-monospace small" id="calibratedThresholdBadge">
+                    Threshold &tau; = 0.50 (Swept 0.05&ndash;0.95)
+                  </span>
+                </div>
+                <div class="calibration-scale-bar-wrap">
+                  <div class="calibration-marker" id="calibrationMarker" style="left: 85%;"></div>
+                </div>
+                <div class="calibration-scale-labels">
+                  <span class="text-success"><i class="fa-solid fa-check me-1"></i> &lt; 0.35 Likely authentic</span>
+                  <span class="text-warning"><i class="fa-solid fa-circle-question me-1"></i> 0.35&ndash;0.65 Uncertain (Review)</span>
+                  <span class="text-danger"><i class="fa-solid fa-triangle-exclamation me-1"></i> &gt; 0.65 Likely AI / Manipulated</span>
+                </div>
+              </div>
+
+              <!-- Supporting Signals for the Explanation Panel -->
+              <div class="supporting-signals-grid">
+                <!-- EXIF Signal Card -->
+                <div class="signal-card" id="exifSignalCard">
+                  <div class="signal-card-title">
+                    <i class="fa-solid fa-camera me-1 text-primary"></i> EXIF Metadata Check
+                  </div>
+                  <span class="signal-status-badge bg-secondary-subtle text-secondary" id="exifStatusBadge">
+                    Analyzing...
+                  </span>
+                  <div class="signal-meta-text" id="exifMetaDetails">
+                    Camera: Scanning tags<br>Software: Inspecting headers
+                  </div>
+                </div>
+
+                <!-- ELA Signal Card -->
+                <div class="signal-card" id="elaSignalCard">
+                  <div class="signal-card-title">
+                    <i class="fa-solid fa-compress me-1 text-danger"></i> ELA Error Analysis
+                  </div>
+                  <span class="signal-status-badge bg-secondary-subtle text-secondary" id="elaStatusBadge">
+                    Analyzing...
+                  </span>
+                  <div class="signal-meta-text" id="elaMetaDetails">
+                    Residual error: Computing<br>Compression variance: Measuring
+                  </div>
+                </div>
+
+                <!-- Face Crop / Fallback Signal Card -->
+                <div class="signal-card" id="faceSignalCard">
+                  <div class="signal-card-title">
+                    <i class="fa-solid fa-crop-simple me-1 text-info"></i> Preprocessing & Crop
+                  </div>
+                  <span class="signal-status-badge bg-secondary-subtle text-secondary" id="faceStatusBadge">
+                    Analyzing...
+                  </span>
+                  <div class="signal-meta-text" id="faceMetaDetails">
+                    Face detection: Centered<br>AutoImageProcessor: 224&times;224 RGB
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ensemble Model Breakdown (Individual ViT & CNN Scores) -->
+              <div class="ensemble-breakdown-card" id="ensembleBreakdownCard">
+                <div class="ensemble-breakdown-title">
+                  <span><i class="fa-solid fa-layer-group me-1 text-primary"></i> Ensemble Model Score Breakdown</span>
+                  <span class="badge bg-primary-subtle text-primary">Common P(fake) Space</span>
+                </div>
+                <div id="ensembleModelsList">
+                  <div class="ensemble-model-row">
+                    <div class="ensemble-model-name">
+                      <i class="fa-solid fa-microchip text-primary"></i> ViT-Base AI-Generated Detector (umm-maybe)
+                      <span class="ensemble-model-weight">Weight 0.40</span>
+                    </div>
+                    <span class="ensemble-score-badge bg-danger-subtle text-danger" id="scoreVitBase">P(fake): --</span>
+                  </div>
+                  <div class="ensemble-model-row">
+                    <div class="ensemble-model-name">
+                      <i class="fa-solid fa-wand-magic-sparkles text-info"></i> SDXL & Midjourney Diffusion ViT (Organika)
+                      <span class="ensemble-model-weight">Weight 0.35</span>
+                    </div>
+                    <span class="ensemble-score-badge bg-danger-subtle text-danger" id="scoreVitPatch">P(fake): --</span>
+                  </div>
+                  <div class="ensemble-model-row">
+                    <div class="ensemble-model-name">
+                      <i class="fa-solid fa-face-flushed text-warning"></i> ViT-Patch16 FaceForensics (dima806)
+                      <span class="ensemble-model-weight">Weight 0.25</span>
+                    </div>
+                    <span class="ensemble-score-badge bg-danger-subtle text-danger" id="scoreEfficient">P(fake): --</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Forensic Metrics Progress Bars -->
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="metric-row">
+                    <div class="metric-label-row">
+                      <span>Facial Geometry Consistency</span>
+                      <span id="valFacial" class="fw-bold">42.0%</span>
+                    </div>
+                    <div class="metric-track">
+                      <div id="barFacial" class="metric-bar bg-rose" style="width: 42%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="metric-row">
+                    <div class="metric-label-row">
+                      <span>Spectral (FFT) High-Freq Noise</span>
+                      <span id="valSpectral" class="fw-bold">89.4%</span>
+                    </div>
+                    <div class="metric-track">
+                      <div id="barSpectral" class="metric-bar bg-rose" style="width: 89%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="metric-row">
+                    <div class="metric-label-row">
+                      <span>Illumination & Shadow Coherence</span>
+                      <span id="valLighting" class="fw-bold">55.0%</span>
+                    </div>
+                    <div class="metric-track">
+                      <div id="barLighting" class="metric-bar bg-amber" style="width: 55%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="metric-row">
+                    <div class="metric-label-row">
+                      <span>CMOS Sensor PRNU Pattern Integrity</span>
+                      <span id="valCompression" class="fw-bold">48.0%</span>
+                    </div>
+                    <div class="metric-track">
+                      <div id="barCompression" class="metric-bar bg-blue" style="width: 48%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Probabilistic Disclaimer -->
+              <div class="probabilistic-disclaimer-card" id="disclaimerCard">
+                <i class="fa-solid fa-circle-exclamation me-1 text-warning"></i>
+                <strong>Notice:</strong> AI verification assessments are probabilistic forensic estimations, not definitive legal proof. Machine learning models may produce false positives or false negatives.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4 Use Cases (Alternating 2-Column Blocks)
+       ======================================================================== -->
+  <section id="useCases" class="section-use-cases">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Essential Use Cases for Media Verification</h2>
+        <p class="section-desc">
+          Defending institutions, journalists, creators, and families against malicious synthetic fabrications.
+        </p>
+      </div>
+
+      <!-- Use Case 1: Teachers -->
+      <div class="row use-case-row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="use-case-img-wrap">
+            <img src="/static/images/usecase_teachers.jpg" alt="Teachers Spotting Fake Historical Photos" class="use-case-img">
+          </div>
+        </div>
+        <div class="col-lg-6 ps-lg-5">
+          <span class="use-case-badge"><i class="fa-solid fa-graduation-cap me-1"></i> Education & History</span>
+          <h3 class="use-case-title">Teachers Spotting Fake Historical Photos</h3>
+          <p class="use-case-text">
+            Educators, historians, and academic institutions verify archival photographs and primary historical sources to prevent falsified imagery and AI-hallucinated events from confusing students and rewriting history.
+          </p>
+          <a href="#studio" class="btn btn-primary-custom">
+            <span>Explore Education Use</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Use Case 2: Journalism -->
+      <div class="row use-case-row flex-lg-row-reverse">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="use-case-img-wrap">
+            <img src="/static/images/usecase_journalism.jpg" alt="Journalism Verifying Viral Videos" class="use-case-img">
+          </div>
+        </div>
+        <div class="col-lg-6 pe-lg-5">
+          <span class="use-case-badge"><i class="fa-solid fa-newspaper me-1"></i> Newsrooms & Media</span>
+          <h3 class="use-case-title">Journalism Verifying Viral Videos</h3>
+          <p class="use-case-text">
+            Newsrooms and investigative fact-checkers quickly authenticate breaking citizen footage, conflict zone recordings, and political press briefings before broadcasting, preserving journalistic credibility and public trust.
+          </p>
+          <a href="#studio" class="btn btn-primary-custom">
+            <span>Verify Media Now</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Use Case 3: Creators -->
+      <div class="row use-case-row">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="use-case-img-wrap">
+            <img src="/static/images/usecase_creators.jpg" alt="Creators Protecting Their Online Content" class="use-case-img">
+          </div>
+        </div>
+        <div class="col-lg-6 ps-lg-5">
+          <span class="use-case-badge"><i class="fa-solid fa-video me-1"></i> Digital Rights</span>
+          <h3 class="use-case-title">Creators Protecting Their Online Content</h3>
+          <p class="use-case-text">
+            Digital influencers, public speakers, and actors protect their brand identity and facial likeness against non-consensual face swaps, defamatory impersonation videos, and synthetic copyright infringements.
+          </p>
+          <a href="#studio" class="btn btn-primary-custom">
+            <span>Protect Likeness</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Use Case 4: Families -->
+      <div class="row use-case-row flex-lg-row-reverse">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="use-case-img-wrap">
+            <img src="/static/images/usecase_families.jpg" alt="Families Detecting Deepfake Scam Calls" class="use-case-img">
+          </div>
+        </div>
+        <div class="col-lg-6 pe-lg-5">
+          <span class="use-case-badge"><i class="fa-solid fa-shield-heart me-1"></i> Consumer Security</span>
+          <h3 class="use-case-title">Families Detecting Deepfake Scam Calls</h3>
+          <p class="use-case-text">
+            Safeguard family members and elderly relatives from AI voice-cloning emergency scams, simulated hostage videos, and biometric imposter schemes targeting personal finances and peace of mind.
+          </p>
+          <a href="#studio" class="btn btn-primary-custom">
+            <span>Family Protection Guide</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Trust & Value Pillars + Testimonial
+       ======================================================================== -->
+  <section id="trust" class="section-trust">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Why Thousands Trust the DFD Model</h2>
+        <p class="section-desc">
+          Built on cutting-edge neural forensics and zero-knowledge privacy standards.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Pillar 1 -->
+        <div class="col-md-3">
+          <div class="feature-pillar-card">
+            <div class="pillar-icon-box">
+              <i class="fa-solid fa-bullseye"></i>
+            </div>
+            <h3 class="pillar-title">High Detection Accuracy</h3>
+            <p class="pillar-desc">
+              Multi-model ensemble trained on over 500,000 real and synthetic media pairs achieving 98.4% empirical accuracy on DFDC benchmarks.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="col-md-3">
+          <div class="feature-pillar-card">
+            <div class="pillar-icon-box">
+              <i class="fa-solid fa-film"></i>
+            </div>
+            <h3 class="pillar-title">Temporal Frame Analysis</h3>
+            <p class="pillar-desc">
+              Analyzes temporal optical-flow tracking to catch micro-flicker and unnatural eye-blink pauses across sequential frames.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="col-md-3">
+          <div class="feature-pillar-card">
+            <div class="pillar-icon-box">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <h3 class="pillar-title">Zero-Knowledge Privacy</h3>
+            <p class="pillar-desc">
+              Your media is scanned in an encrypted sandboxed enclave and automatically purged post-analysis. We never store or train on your data.
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="col-md-3">
+          <div class="feature-pillar-card">
+            <div class="pillar-icon-box">
+              <i class="fa-solid fa-stamp"></i>
+            </div>
+            <h3 class="pillar-title">Forensic Certificate Export</h3>
+            <p class="pillar-desc">
+              Download cryptographic verification reports with SHA-256 signatures, Grad-CAM heatmaps, and evidentiary metadata.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial Quote -->
+      <div class="testimonial-banner">
+        <div class="stars-rating mb-3">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+        </div>
+        <p class="testimonial-quote">
+          &ldquo;The DFD Model caught a fraudulent executive video conference within seconds during an attempted wire fraud incident. The Grad-CAM heatmap proved the boundary around the jawline was artificially synthesized.&rdquo;
+        </p>
+        <div class="testimonial-author">Dr. Elena Vance</div>
+        <div class="testimonial-role">Chief Information Security Officer, Apex Cyber Forensics</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Frequently Asked Questions (Accordion)
+       ======================================================================== -->
+  <section id="faq" class="section-faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-desc">Everything you need to know about deepfake detection, model accuracy, and data security.</p>
+      </div>
+
+      <div class="faq-accordion-box">
+        <!-- Q1 -->
+        <div class="faq-item active">
+          <div class="faq-header">
+            <h3 class="faq-title">What is deepfake detection?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Deepfake detection is the forensic process of using Artificial Intelligence and Machine Learning models to inspect digital media for subtle computational signatures left behind by generative networks (GANs, Diffusion Models, and autoencoder face swaps). It analyzes pixel residuals, facial landmark geometry, eye reflections, and sensor noise.
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">How accurate is the DFD Model detection engine?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Our DFD Model ensemble architecture (combining Vision Transformers with EfficientNet-B7 and 2D-FFT spectral analyzers) achieves a verified benchmark accuracy of 98.4% across standard academic evaluation datasets such as FaceForensics++, Celeb-DF, and the Deepfake Detection Challenge (DFDC).
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">Which file formats are currently supported?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Currently, image verification is active for JPG, JPEG, PNG, and WEBP formats up to 15MB. Video verification (MP4, AVI, MOV) and Audio verification (MP3, WAV) are currently in development and will launch in the next DFD Model update.
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">Can it detect both face swaps and full AI-generated portraits?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Yes. Our dual-classifier pipeline targets both boundary blending artifacts common in face-swap tools (such as DeepFaceLab and FaceFusion) and global frequency irregularities characteristic of text-to-image diffusion models like Midjourney, Stable Diffusion, and Flux.
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">How does frequency domain (FFT) analysis spot deepfakes?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Generative convolutional layers frequently leave periodic high-frequency checkerboard patterns and spectral anomalies in the Fourier domain that are invisible to the naked human eye. Our FFT module transforms pixel values into frequency space to expose these synthetic mathematical signatures.
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">Is my uploaded media stored or shared?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            No. We prioritize your privacy. Uploaded files are processed in an encrypted temporary sandbox exclusively for generating your forensic report and are automatically purged. We never store personal media, train models on user uploads, or share data with third parties.
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <div class="faq-header">
+            <h3 class="faq-title">Can I download an official verification certificate?</h3>
+            <i class="fa-solid fa-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-body">
+            Yes. Every analysis generates a unique cryptographic Tracking ID (e.g., DFD-2026-90412) with a SHA-256 media fingerprint. You can view, print, or download this certificate directly from the AI Studio.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Bottom CTA Banner
+       ======================================================================== -->
+  <section class="section-cta-banner">
+    <div class="container text-center">
+      <h2 class="cta-headline">Free Online Deepfake Detection at Your Fingertips</h2>
+      <p class="cta-subheadline">
+        Defend against synthetic misinformation. Upload your media and get an instant AI authenticity score with the DFD Model.
+      </p>
+      <a href="#studio" class="btn btn-cta-white">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <span>Upload & Verify Now</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Footer
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Col 1 -->
+        <div class="col-lg-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="brand-icon">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span class="fs-5 fw-bold text-white">DFD Model</span>
+          </div>
+          <p class="text-muted small pe-lg-4">
+            Empowering truth and digital media security through next-generation AI forensics. Developed using HTML, CSS, JavaScript, Bootstrap, Python Flask, and SQLite.
+          </p>
+          <div class="d-flex gap-3 text-muted fs-6">
+            <a href="#" class="text-secondary"><i class="fa-brands fa-github"></i></a>
+            <a href="#" class="text-secondary"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="text-secondary"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" class="text-secondary"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Detection Tools -->
+        <div class="col-6 col-lg-2">
+          <h4 class="footer-heading">Detection Tools</h4>
+          <ul class="footer-links">
+            <li><a href="#studio">Image Detector (Active)</a></li>
+            <li><a href="javascript:void(0)" class="coming-soon-trigger" data-feature="Video Verifier">Video Verifier <span class="badge-coming-soon">Soon</span></a></li>
+            <li><a href="javascript:void(0)" class="coming-soon-trigger" data-feature="Audio Forensics">Audio Forensics <span class="badge-coming-soon">Soon</span></a></li>
+            <li><a href="#studio">Landmark Scanner</a></li>
+            <li><a href="#studio">FFT Analyzer</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Solutions -->
+        <div class="col-6 col-lg-2">
+          <h4 class="footer-heading">Solutions</h4>
+          <ul class="footer-links">
+            <li><a href="#useCases">Fact Checkers</a></li>
+            <li><a href="#useCases">Academic & Education</a></li>
+            <li><a href="#useCases">Enterprise Security</a></li>
+            <li><a href="#useCases">Content Creators</a></li>
+            <li><a href="#useCases">Legal Forensics</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Resources -->
+        <div class="col-6 col-lg-2">
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#howItWorks">How It Works</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#trust">Benchmarks</a></li>
+            <li><a href="/api/stats">Platform Metrics</a></li>
+            <li><a href="#">API Documentation</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Newsletter -->
+        <div class="col-6 col-lg-2">
+          <h4 class="footer-heading">Threat Bulletin</h4>
+          <p class="small text-muted mb-2">Get monthly synthetic media intelligence reports.</p>
+          <form id="newsletterForm">
+            <div class="input-group input-group-sm mb-2">
+              <input type="email" id="newsletterEmail" class="form-control" placeholder="Enter email..." required>
+              <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+            <div id="newsletterMessage" class="small"></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 DFD Model &bull; Deepfake Detection and Media Verification System. All rights reserved.
+        </div>
+        <div class="d-flex gap-3">
+          <a href="#" class="text-secondary small">Privacy Policy</a>
+          <a href="#" class="text-secondary small">Terms of Service</a>
+          <a href="#" class="text-secondary small">Security Protocol</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Official Verification Certificate Modal
+       ======================================================================== -->
+  <div class="modal fade" id="certModal" tabindex="-1" aria-labelledby="certModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-light border-bottom">
+          <h5 class="modal-title fw-bold" id="certModalLabel">
+            <i class="fa-solid fa-file-shield text-primary me-2"></i>Official Forensic Verification Certificate
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="certificate-frame">
+            <div class="certificate-watermark">AUTHENTICITY VERIFIED</div>
+            <div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-4">
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="brand-icon" style="width: 32px; height: 32px;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <h4 class="fw-bold mb-0">DFD Model Media Security</h4>
+                </div>
+                <small class="text-muted">Digital Media Forensic Certificate of Authenticity</small>
+              </div>
+              <div class="certificate-seal">
+                <i class="fa-solid fa-award fs-4 mb-1"></i>
+                <span>VERIFIED SEAL</span>
+              </div>
+            </div>
+
+            <div class="row g-3 small mb-4">
+              <div class="col-6">
+                <span class="text-muted d-block">Verification Tracking ID:</span>
+                <strong id="certTrackingId" class="font-monospace text-primary">DFD-2026-90412</strong>
+              </div>
+              <div class="col-6">
+                <span class="text-muted d-block">Analysis Timestamp (UTC):</span>
+                <strong id="certDate">Fri, 24 Oct 2026 10:30:00 GMT</strong>
+              </div>
+              <div class="col-6">
+                <span class="text-muted d-block">Inspected Media File:</span>
+                <strong id="certFilename">hero_face_real.jpg</strong>
+              </div>
+              <div class="col-6">
+                <span class="text-muted d-block">Forensic Model Used:</span>
+                <strong id="certModel">DFD Model Ensemble ViT + EfficientNet-B7</strong>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light rounded border mb-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="text-muted small d-block">Final Forensic Verdict:</span>
+                  <h5 id="certVerdict" class="fw-bold mb-0 text-success">Authentic / Real Media</h5>
+                </div>
+                <div class="text-end">
+                  <span class="text-muted small d-block">Confidence Score:</span>
+                  <h4 id="certConfidence" class="fw-bold mb-0 text-primary">98.4%</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-2">
+              <span class="text-muted small d-block">Cryptographic SHA-256 Digest:</span>
+              <div id="certHash" class="font-monospace p-2 bg-secondary-subtle rounded small text-break border">
+                7b49a5b3f114c0e6e7378d3b5d27e2a44138e3a2b7f08e498c4d291e0a6d21e8
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-top">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="window.print()">
+            <i class="fa-solid fa-print me-1"></i> Print / Save PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Feature Coming Soon Modal (Video & Audio Verification)
+       ======================================================================== -->
+  <div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white border-bottom-0">
+          <h5 class="modal-title fw-bold" id="comingSoonModalLabel">
+            <i class="fa-solid fa-rocket me-2"></i>Feature Coming Soon
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 text-center">
+          <div class="d-inline-flex align-items-center justify-content-center p-3 bg-primary-subtle text-primary rounded-circle mb-3 fs-2">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <h4 class="fw-bold mb-2" id="comingSoonFeatureTitle">Video & Audio Verification</h4>
+          <p class="text-muted small mb-3">
+            This feature is currently under active engineering and training in the <strong>DFD Model</strong> pipeline:
+          </p>
+          <div class="text-start bg-light p-3 rounded border mb-3 small">
+            <div class="mb-2">
+              <strong class="text-primary"><i class="fa-solid fa-film me-1"></i> Video Verification:</strong>
+              <span class="text-muted d-block">Frame-by-frame 3D temporal CNNs, eye-blink periodicity, and optical flow boundary tracking.</span>
+            </div>
+            <div>
+              <strong class="text-primary"><i class="fa-solid fa-microphone me-1"></i> Audio Verification:</strong>
+              <span class="text-muted d-block">Spectrogram pitch-jitter detection and neural vocoder synthetic speech forensics.</span>
+            </div>
+          </div>
+          <div class="alert alert-info py-2 small mb-0 text-start">
+            <i class="fa-solid fa-circle-check text-success me-1"></i> <strong>Active Now:</strong> Image Deepfake Verification is fully operational and calibrated in the AI Studio.
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-top">
+          <button type="button" class="btn btn-primary w-100 rounded-pill" data-bs-dismiss="modal">
+            Return to Image Detection
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       User Authentication Modal (Sign In & Sign Up)
+       ======================================================================== -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg overflow-hidden">
+        <!-- Auth Header with Toggle Tabs -->
+        <div class="modal-header bg-light border-bottom pb-0 pt-3 px-4 position-relative">
+          <ul class="nav nav-tabs border-bottom-0 w-100 justify-content-center" id="authTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active fw-bold text-dark px-4 py-2 border-0 border-bottom border-primary border-3" id="tabSignInBtn" data-bs-toggle="tab" data-bs-target="#tabSignIn" type="button" role="tab">
+                <i class="fa-solid fa-right-to-bracket me-1 text-primary"></i> Sign In
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link fw-bold text-muted px-4 py-2 border-0" id="tabSignUpBtn" data-bs-toggle="tab" data-bs-target="#tabSignUp" type="button" role="tab">
+                <i class="fa-solid fa-user-plus me-1 text-primary"></i> Create Account
+              </button>
+            </li>
+          </ul>
+          <button type="button" class="btn-close ms-0 position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <!-- Alert Feedback Box -->
+          <div id="authAlert" class="alert d-none py-2 px-3 small mb-3"></div>
+
+          <!-- Social Quick Sign In -->
+          <div class="d-grid gap-2 mb-3">
+            <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-2 py-2 btn-sm fw-semibold social-auth-btn" data-provider="Google">
+              <i class="fa-brands fa-google text-danger"></i>
+              <span>Continue with Google</span>
+            </button>
+            <button type="button" class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-2 py-2 btn-sm fw-semibold social-auth-btn" data-provider="GitHub">
+              <i class="fa-brands fa-github text-dark"></i>
+              <span>Continue with GitHub</span>
+            </button>
+          </div>
+
+          <div class="d-flex align-items-center my-3">
+            <hr class="flex-grow-1 my-0">
+            <span class="px-3 text-muted small fw-semibold text-uppercase">or with email</span>
+            <hr class="flex-grow-1 my-0">
+          </div>
+
+          <!-- Tab Content -->
+          <div class="tab-content" id="authTabContent">
+            <!-- Sign In Pane -->
+            <div class="tab-pane fade show active" id="tabSignIn" role="tabpanel">
+              <form id="signInForm">
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" class="form-control border-start-0" id="signInEmail" placeholder="name@company.com" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="d-flex justify-content-between">
+                    <label class="form-label small fw-bold text-muted">Password</label>
+                    <a href="javascript:void(0)" class="small text-primary text-decoration-none" id="forgotPasswordBtn">Forgot?</a>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control border-start-0" id="signInPassword" placeholder="••••••••" required>
+                  </div>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="rememberMe" checked>
+                  <label class="form-check-label small text-muted" for="rememberMe">Remember me on this browser</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-pill">
+                  <span>Sign In</span>
+                  <i class="fa-solid fa-arrow-right ms-1"></i>
+                </button>
+              </form>
+            </div>
+
+            <!-- Sign Up Pane -->
+            <div class="tab-pane fade" id="tabSignUp" role="tabpanel">
+              <form id="signUpForm">
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Full Name</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-user"></i></span>
+                    <input type="text" class="form-control border-start-0" id="signUpName" placeholder="Alex Morgan" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Email Address</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-envelope"></i></span>
+                    <input type="email" class="form-control border-start-0" id="signUpEmail" placeholder="name@company.com" required>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-bold text-muted">Password</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light text-muted border-end-0"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" class="form-control border-start-0" id="signUpPassword" placeholder="At least 6 characters" minlength="6" required>
+                  </div>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="agreeTerms" required checked>
+                  <label class="form-check-label small text-muted" for="agreeTerms">
+                    I agree to the <a href="javascript:void(0)" class="text-primary text-decoration-none">Terms of Service</a> & <a href="javascript:void(0)" class="text-primary text-decoration-none">Privacy Policy</a>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold rounded-pill">
+                  <span>Create Account</span>
+                  <i class="fa-solid fa-user-check ms-1"></i>
+                </button>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Multi-Modal Forensics: Coming Soon Modal with Video Frames Inspector
+       ======================================================================== -->
+  <div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
+        <!-- Modal Header -->
+        <div class="modal-header border-bottom bg-light px-4 py-3">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge bg-warning-subtle text-warning border border-warning-subtle p-2 rounded-circle">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </span>
+            <div>
+              <h5 class="modal-title fw-bold text-dark mb-0" id="comingSoonFeatureTitle">Video Deepfake Verification</h5>
+              <small class="text-muted">DFD Model Temporal Architecture v1.0 • In Development</small>
+            </div>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body p-4">
+          <!-- Notice Banner -->
+          <div class="alert alert-warning border border-warning-subtle d-flex align-items-center gap-3 rounded-3 mb-4">
+            <i class="fa-solid fa-triangle-exclamation fs-4 text-warning"></i>
+            <div class="small">
+              <strong>Notice:</strong> This feature is currently in development. Our team is actively training the <strong>DFD Model Video Temporal & Multi-Frame Pipeline</strong> to detect continuous frame anomalies, eye saccades, and lip-sync warping across streaming video.
+            </div>
+          </div>
+
+          <!-- Video Temporal Frames Inspection Filmstrip -->
+          <div class="mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="fw-bold text-dark small">
+                <i class="fa-solid fa-film text-primary me-1"></i> Multi-Frame Forensic Inspection (30 FPS Stream Analysis)
+              </span>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle font-monospace small">
+                Sequential Frames #01 — #05
+              </span>
+            </div>
+
+            <div class="filmstrip-img-wrapper shadow-sm">
+              <img src="/static/images/video_frames_filmstrip.jpg" alt="Video Frames Forensic Inspection Filmstrip" class="img-fluid w-100">
+            </div>
+
+            <!-- Frame Breakdown Row -->
+            <div class="row g-2 mt-2">
+              <div class="col">
+                <div class="p-2 border rounded text-center bg-light">
+                  <div class="small fw-bold text-dark">Frame #01</div>
+                  <div class="badge bg-success-subtle text-success small">Pass (99%)</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border rounded text-center bg-light">
+                  <div class="small fw-bold text-dark">Frame #02</div>
+                  <div class="badge bg-success-subtle text-success small">Pass (98%)</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-danger-subtle rounded text-center bg-danger-subtle">
+                  <div class="small fw-bold text-danger">Frame #03</div>
+                  <div class="badge bg-danger text-white small">Seam (98.4%)</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border border-danger-subtle rounded text-center bg-danger-subtle">
+                  <div class="small fw-bold text-danger">Frame #04</div>
+                  <div class="badge bg-danger text-white small">Lip-Warp (99%)</div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-2 border rounded text-center bg-light">
+                  <div class="small fw-bold text-dark">Frame #05</div>
+                  <div class="badge bg-success-subtle text-success small">Recovery</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Early Access Notification Box -->
+          <div class="bg-light p-3 rounded-3 border">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+              <h6 class="fw-bold mb-0 text-dark small"><i class="fa-solid fa-bell text-primary me-1"></i> Get Notified When Multi-Frame Forensics Launches</h6>
+              <span class="badge bg-secondary-subtle text-secondary small">Early Access Alpha</span>
+            </div>
+            <form id="comingSoonNotifyForm" class="d-flex gap-2">
+              <input type="email" class="form-control form-control-sm" id="comingSoonEmail" placeholder="Enter your email address" required>
+              <button type="submit" class="btn btn-primary btn-sm px-3 text-nowrap">Notify Me</button>
+            </form>
+            <div id="comingSoonSuccessMsg" class="text-success small mt-2 d-none">
+              <i class="fa-solid fa-circle-check me-1"></i> Thanks! You're on the early access priority list.
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer border-top bg-light px-4 py-2 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill px-3" data-bs-dismiss="modal">Close</button>
+          <a href="#studio" class="btn btn-primary btn-sm rounded-pill px-3" data-bs-dismiss="modal">
+            <i class="fa-solid fa-microchip me-1"></i> Test Active Image Forensics
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Main Interactive JavaScript -->
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
